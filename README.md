@@ -1,12 +1,16 @@
 # Clockwise.MD Website Widget
+---
+## A Quick Note
+This is a patient facing widget that is meant to be added to your clinic or hospital's public facing website.  It does not in any way affect functionality of the application.
+
+---
 
 This first snippet of code is what gets the wait time from your clinic.  It should go inside the `<head>` tag of your web page.  You want to replace __[ID]__ with your hospital's id number (exclude the brackets)
 
 ```javascript
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://clockwisemd.com/hospitals/clockwise_api.js">
-</script>
+<script type="text/javascript" src="http://clockwisemd.com/hospitals/clockwise_api.js"></script>
 
 <script>
   jQuery(document).ready( function() {
@@ -54,7 +58,7 @@ This next snippet of code will render a button on your webpage that a potential 
       <!-- TODO replace [ID] with your hospital's id (exlude the brackets) -->
       <div id="current_wait_[ID]" style="display:inline;"></div> Minutes</h3>
 
-    <!-- TODO replace [ID] with your hosptial's id (exclude the brackets) -->
+    <!-- TODO replace [ID] with your hospital's id (exclude the brackets) -->
     <a href="https://clockwisemd.com/hospitals/[ID]/appointments/new" style="color:white;
     text-decoration: none; font-size: 26px; line-height:30px; font-weight:bold;
     letter-spacing:2px; margin-top:15px; padding: 5px 10px; margin-bottom: 0;
