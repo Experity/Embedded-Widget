@@ -72,6 +72,7 @@ This next snippet of code will render a button on your webpage that a potential 
 ```
 
 The above snippet is pre-styled.  It will look as follows:
+
 ![Default Widget](Default_Widget_Style.png)
 
 If you do not want the above styling, the minimum `HTML` code needed to display your wait time is the following.
