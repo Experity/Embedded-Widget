@@ -1,10 +1,12 @@
 # Clockwise.MD Website Widget
----
-## A Quick Note
+### A Quick Note
 This is a patient facing widget that is meant to be added to your clinic or hospital's public facing website.  It does not in any way affect functionality of the application.
 
 ---
+### Demonstration
+[Click here to see the widget in action](https://github.com/LightshedHealth/Website-Widget-API/master/index.html)
 
+---
 This first snippet of code is what gets the wait time from your clinic.  It should go inside the `<head>` tag of your web page.  You want to replace __[ID]__ with your hospital's id number (exclude the brackets)
 
 ```javascript
