@@ -1,0 +1,25 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://clockwisemd.com/hospitals/clockwise_api.js"></script>
+
+<script>
+  jQuery(document).ready( function() {
+    jQuery('body').on('clockwise_waits_loaded', function (e, id) {
+      jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);
+    });
+    loadAllWaits();
+  });
+
+  function loadAllWaits() {
+    /*
+     * TODO change [ID] to your hospital's id
+     */
+    Clockwise.CurrentWait([ID], 'html');
+
+    // To Add additional wait times for other clinics, copy line above with different ID.
+    setTimeout(function(){loadAllWaits()},60000);
+  }
+</script>
+
+<style>
+  .clockwise_current_wait{display:inline;}
+</style>
