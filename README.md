@@ -1,13 +1,17 @@
 # Clockwise.MD Website Widget
 ### A Quick Note
-This is a patient facing widget that is meant to be added to your clinic or hospital's public facing website.  It does not in any way affect functionality of the application.
+This is a patient facing widget that is meant to be added to your clinic or hospital's public
+facing website.  It does not in any way affect functionality of the application.
 
 ---
 ### Demonstration
 [Click here to see the widget in action](http://lightshedhealth.github.io/Website-Widget-API/)
 
 ---
-This first snippet of code is what gets the wait time from your clinic.  It should go inside the `<head>` tag of your web page.  You want to replace __[ID]__ with your hospital's id number (exclude the brackets)
+### Beginner's Guide
+This first snippet of code is what gets the wait time from your clinic.  It should go inside the
+`<head>` tag of your web page.  You want to replace __[ID]__ with your hospital's id number
+(exclude the brackets)
 
 ```javascript
 
@@ -39,7 +43,9 @@ This first snippet of code is what gets the wait time from your clinic.  It shou
 
 ```
 ---
-This next snippet of code will render a button on your webpage that a potential patient can click to follow to the online appointment creation screen.  This can be placed anywhere within the `<body>` tag on your web page.
+This next snippet of code will render a button on your webpage that a potential patient can click
+to follow to the online appointment creation screen.  This can be placed anywhere within the
+`<body>` tag on your web page.
 
 ```html
 
@@ -81,11 +87,115 @@ The above snippet is pre-styled.  It will look as follows:
 
 ![Default Widget](Default_Widget_Style.png)
 
-If you do not want the above styling, the minimum `HTML` code needed to display your wait time is the following.
+If you do not want the above styling, the minimum `HTML` code needed to display your wait time
+is the following.
 
 ```html
 
-<!-- TODO replace [ID] with your hosptial's id (exclude the brackets) -->
-<h4>Current wait-time:<div id="current_wait_[ID]" style="display:inline;"></div>
+<!-- TODO replace [ID] with your Hospital's id (exclude the brackets) -->
+<h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>
+
+```
+
+### Advanced Topics
+For systems with multiple clinics, the Clockwise widget can easily scale to allow for retrieval
+of all your wait times.  Understanding how the code functions can be helpful to properly setting
+up your web page.
+
+First, we'll analyze the javascript.  The following two lines import jQuery, a popular javascript
+library, and the Clockwise API, respectively.  
+
+```javascript
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://clockwisemd.com/hospitals/clockwise_api.js"></script>
+
+```
+
+Your website should only import jQuery once, so if it already
+exists somewhere, don't add it again (but make sure that the version is 1.10.2 or greater).  
+The Clockwise API provides the functions to query your clinic. Below is the next part of the
+javascript that sets up the call.  It must come __AFTER__ you've called the above scripts.
+
+```javascript
+
+jQuery(document).ready( function() {
+  jQuery('body').on('clockwise_waits_loaded', function (e, id) {
+    jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);
+  });
+  loadAllWaits();
+});
+
+```
+
+The outer function, `jQuery(document).ready( function() { ... } )`, tells jQuery to run the
+function within it once the page has loaded.  
+The next part, called inside of the `ready` function, is
+`jQuery('body').on('clockwise_waits_loaded', ... )`, which tells the page to listen for the
+`clockwise_waits_loaded` signal that the Clockwise API sends when it has loaded the waits and once
+it receives that signal, to run a different function.  Next, `function(e, id) { ... }` is the
+function called when the signal is received.  Notice the inputs `e` and `id`.  The `e` is short
+for `event`, which can safely be ignored, but must still be included.  The second input, `id`, is
+the variable that will hold your hospital's id.  Finally, the piece that assigns the wait to
+the corresponding __HTML__ tag is `jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);`, which
+accomplishes a couple things.  1) It creates a unique identifier for the current wait, as can
+be seen by `'#current_wait_'+id` (so if you have a hospital with id 293, it will easily be
+identifiable).  2) It assigns the value of the current wait for the retrieved id.  The last
+thing called within the `ready` function is `loadAllWaits()`, which will be described below.
+
+```javascript
+
+function loadAllWaits() {
+  /*
+   * TODO change [ID] to your hospital's id
+   */
+  Clockwise.CurrentWait([ID], 'html');  
+
+  // To Add additional wait times for other clinics, copy line above with different ID.
+  setTimeout(function(){loadAllWaits()},60000);
+}
+
+```
+
+The `loadAllWaits()` function does two important things.  First, it calls
+`Clockwise.CurrentWait( ... )` on the supplied hospital id, and then it sets up the function to
+be called again in 1 minute.  This allows your web page to stay live in its updates without
+having to refresh the page.  If you wanted to call for multiple hospital ids, your `loadAllWaits()`
+function might look like this:
+
+```javascript
+
+function loadAllWaits() {
+  Clockwise.CurrentWait(1, 'html');
+  Clockwise.CurrentWait(8, 'html');
+  Clockwise.CurrentWait(293, 'html');
+
+  // To Add additional wait times for other clinics, copy line above with different ID.
+  setTimeout(function(){loadAllWaits()},60000);
+}
+
+```
+Make sure the hospital ids you include correspond to the hospitals in your network, otherwise
+you'll be getting wait times from different clinics!
+
+
+The last important piece to discuss is the __HTML__ you'll include in the `<body>` tag of your
+page.  The much longer one is our pre-styled widget, but most of the styling is non-essential, so
+I will instead just strip out the important part.
+
+```html
+
+<h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>
+
+```
+
+The important part is
+`<h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>` because
+that is where the wait time will go.  Again, this is one of the places where you need  to input
+your id number, so a complete example is as follows:
+
+```html
+
+<h4>Current wait time:<div id="current_wait_293" style="display:inline;"></div></h4>
 
 ```
