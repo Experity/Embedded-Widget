@@ -11,7 +11,7 @@ facing website.  It does not in any way affect functionality of the application.
 ### Beginner's Guide
 This first snippet of code is what gets the wait time from your clinic.  It should go inside the
 `<head>` tag of your web page.  You want to replace __[ID]__ with your hospital's id number
-(exclude the brackets)
+(exclude the brackets) where noted.
 
 ```javascript
 
@@ -21,6 +21,7 @@ This first snippet of code is what gets the wait time from your clinic.  It shou
 <script>
   jQuery(document).ready( function() {
     jQuery('body').on('clockwise_waits_loaded', function (e, id) {
+      // MAKE SURE NOT TO CHANGE THE ID HERE
       jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);
     });
     loadAllWaits();
