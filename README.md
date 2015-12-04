@@ -15,8 +15,8 @@ This first snippet of code is what gets the wait time from your clinic.  It shou
 
 ```javascript
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://clockwisemd.com/hospitals/clockwise_api.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://clockwisemd.com/hospitals/clockwise_api.js"></script>
 
 <script>
   jQuery(document).ready( function() {
@@ -108,8 +108,8 @@ library, and the Clockwise API, respectively.
 
 ```javascript
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://clockwisemd.com/hospitals/clockwise_api.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://clockwisemd.com/hospitals/clockwise_api.js"></script>
 
 ```
 
