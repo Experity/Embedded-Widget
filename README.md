@@ -98,6 +98,53 @@ is the following.
 
 ```
 
+### Display a Range
+If you'd like to display a time range instead of just a number, it's fairly easy to extend
+our API to do this.  We'll be editing the Javascript used in the `<head>` tag as follows:
+
+```javascript
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://clockwisemd.com/hospitals/clockwise_api.js"></script>
+
+<script>
+  jQuery(document).ready( function() {
+    jQuery('body').on('clockwise_waits_loaded', function (e, id) {
+      // This is the raw wait time that we'll be using
+      var current_wait = parseInt(jQuery(Clockwise.Waits[id]).html());
+      // TODO change this to equal your desired wait time (in minutes)
+      var predicted_wait_range = 15;
+
+      // This creates our new container to insert into the page.  You can edit this to look however
+      // you want.  This example is the one displayed in the demonstration page linked above
+      var waits_div = "<div class='clockwise_current_wait'>" + current_wait +
+        " - " + (current_wait + predicted_wait_range) + "</div>";
+
+      // MAKE SURE NOT TO CHANGE THE ID HERE
+      jQuery('#current_wait_'+id).html(waits_div);
+    });
+    loadAllWaits();
+  });
+
+  function loadAllWaits() {
+    /*
+     * TODO change [ID] to your hospital's id
+     */
+    Clockwise.CurrentWait([ID], 'html');  
+
+    // To Add additional wait times for other clinics, copy line above with different ID.
+    setTimeout(function(){loadAllWaits()},60000);
+  }
+</script>
+
+<style>
+  .clockwise_current_wait{display:inline;}
+</style>
+
+```
+
+With this in place, we won't need to alter anything in our `<body>` tag of the web page.
+
 ### Advanced Topics
 For systems with multiple clinics, the Clockwise widget can easily scale to allow for retrieval
 of all your wait times.  Understanding how the code functions can be helpful to properly setting

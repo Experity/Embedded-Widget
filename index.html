@@ -12,6 +12,16 @@
 
           // This one populates the basic wait display
           jQuery('#current_wait_simple_'+id).html(Clockwise.Waits[id]);
+
+          // This is the example of using a wait range
+          var current_wait = parseInt(jQuery(Clockwise.Waits[id]).html());
+          var predicted_wait_range = 15;
+
+          var waits_div = "<div class='clockwise_current_wait'>" + current_wait +
+            " - " + (current_wait + predicted_wait_range) + "</div>";
+
+          // MAKE SURE NOT TO CHANGE THE ID HERE
+          jQuery('#current_wait_range_'+id).html(waits_div);
         });
         loadAllWaits();
       });
@@ -65,6 +75,8 @@
 
       <h2>Below is an example of just the basic wait time display</h2>
       <h4>Current wait time: <span id="current_wait_simple_293"></span> minutes</h4>
+      <h2>This example shows what a basic wait range can look like</h2>
+      <h4>Current wait: <span id="current_wait_range_293"></span> minutes</h4>
     </div>
   </body>
 
