@@ -110,6 +110,8 @@ our API to do this.  We'll be editing the Javascript used in the `<head>` tag as
 <script>
   jQuery(document).ready( function() {
     jQuery('body').on('clockwise_waits_loaded', function (e, id) {
+      // REMEMBER: do NOT put your hospital's id in this function
+
       // This is the raw wait time that we'll be using
       var current_wait = parseInt(jQuery(Clockwise.Waits[id]).html());
       // TODO change this to equal your desired wait time (in minutes)
@@ -120,7 +122,7 @@ our API to do this.  We'll be editing the Javascript used in the `<head>` tag as
       var waits_div = "<div class='clockwise_current_wait'>" + current_wait +
         " - " + (current_wait + predicted_wait_range) + "</div>";
 
-      // MAKE SURE NOT TO CHANGE THE ID HERE
+      // Finally, this will add it to your web page
       jQuery('#current_wait_'+id).html(waits_div);
     });
     loadAllWaits();
