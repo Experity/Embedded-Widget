@@ -16,7 +16,7 @@ This first snippet of code is what gets the wait time from your clinic.  It shou
 ```javascript
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://clockwisemd.com/hospitals/clockwise_api.js"></script>
+<script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
 
 <script>
   jQuery(document).ready( function() {
@@ -68,7 +68,7 @@ to follow to the online appointment creation screen.  This can be placed anywher
       <div id="current_wait_[ID]" style="display:inline;"></div> Minutes</h3>
 
     <!-- TODO replace [ID] with your hospital's id (exclude the brackets) -->
-    <a href="https://clockwisemd.com/hospitals/[ID]/appointments/new" style="color:white;
+    <a href="https://www.clockwisemd.com/hospitals/[ID]/appointments/new" style="color:white;
     text-decoration: none; font-size: 26px; line-height:30px; font-weight:bold;
     letter-spacing:2px; margin-top:15px; padding: 5px 10px; margin-bottom: 0;
     text-align: center; cursor: pointer;
@@ -105,7 +105,7 @@ our API to do this.  We'll be editing the Javascript used in the `<head>` tag as
 ```javascript
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://clockwisemd.com/hospitals/clockwise_api.js"></script>
+<script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
 
 <script>
   jQuery(document).ready( function() {
@@ -158,7 +158,7 @@ library, and the Clockwise API, respectively.
 ```javascript
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://clockwisemd.com/hospitals/clockwise_api.js"></script>
+<script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
 
 ```
 
