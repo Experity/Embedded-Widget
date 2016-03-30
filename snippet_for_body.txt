@@ -16,7 +16,7 @@
       <div id="current_wait_[ID]" style="display:inline;"></div> Minutes</h3>
 
     <!-- TODO replace [ID] with your hosptial's id (exclude the brackets) -->
-    <a href="https://clockwisemd.com/hospitals/[ID]/appointments/new" style="color:white;
+    <a href="https://www.clockwisemd.com/hospitals/[ID]/appointments/new" style="color:white;
     text-decoration: none; font-size: 26px; line-height:30px; font-weight:bold;
     letter-spacing:2px; margin-top:15px; padding: 5px 10px; margin-bottom: 0;
     text-align: center; cursor: pointer;
