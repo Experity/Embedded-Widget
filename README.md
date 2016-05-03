@@ -9,6 +9,35 @@ facing website.  It does not in any way affect functionality of the application.
 
 ---
 ### Beginner's Guide
+
+Our Javascript API module can be found [here](https://www.clockwisemd.com/hospitals/clockwise_api.js). The following
+shows some of the methods available on the `window.Clockwise` object and how to use them.
+
+**`Clockwise.AvailableTimes(hospital_id, days_from_today, format, is_15_min)`**:
+
+Use this method to get a list of available times for your clinic. When `format` argument is 'html' it will render
+html similar to: `<div class='clockwise_time clockwise_available_time'><a href='http://clockwisemd.com/hospitals/[ID]/appointments/new?appointment[days_from_today]=0&appointment[time]= 8:45 AM'> 8:45 AM</a></div>`.
+
+**`Clockwise.CurrentWait(hospital_id, format)`**:
+
+Use this method to get the current estimated wait time. When `format`
+argument is 'html' it will render html similar to: `<div class='clockwise_current_wait'>10</div>`
+
+**`Clockwise.CurrentLength(hospital_id, format)`**:
+
+Use this method to get the current number of patients in line. `Clockwise.CurrentLength` is a little different in that
+it will not render html (even when the `format` argument is 'html'). Instead it will fetch the current number of
+patients in line and append it to the `Clockwise` object. For example:
+
+```js
+Clockwise.Lengths // returns {}
+Clockwise.CurrentLength(123, 'html') // this updates Clockwise.Lengths attribute
+Clockwise.Lengths // returns {123: '5'} assuming there are 5 patients in line
+// Access the length for clinic 123 via: Clockwise.Lengths[123]
+```
+
+
+### Examples
 This first snippet of code is what gets the wait time from your clinic.  It should go inside the
 `<head>` tag of your web page.  You want to replace __[ID]__ with your hospital's id number
 (exclude the brackets) where noted.
