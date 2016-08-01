@@ -1,49 +1,25 @@
 # Clockwise.MD Website Widget
+
 ### A Quick Note
+
 This is a patient facing widget that is meant to be added to your clinic or hospital's public
-facing website.  It does not in any way affect functionality of the application.
+facing website. It does not in any way affect functionality of the application.
 
 ---
+
 ### Demonstration
+
 [Click here to see the widget in action](http://lightshedhealth.github.io/Website-Widget-API/)
 
 ---
-### Beginner's Guide
 
-Our Javascript API module can be found [here](https://www.clockwisemd.com/hospitals/clockwise_api.js). The following
-shows some of the methods available on the `window.Clockwise` object and how to use them.
+### Basic Usage
 
-**`Clockwise.AvailableTimes(hospital_id, days_from_today, format, is_15_min)`**:
-
-Use this method to get a list of available times for your clinic. When `format` argument is 'html' it will render
-html similar to: `<div class='clockwise_time clockwise_available_time'><a href='http://clockwisemd.com/hospitals/[ID]/appointments/new?appointment[days_from_today]=0&appointment[time]= 8:45 AM'> 8:45 AM</a></div>`.
-
-**`Clockwise.CurrentWait(hospital_id, format)`**:
-
-Use this method to get the current estimated wait time. When `format`
-argument is 'html' it will render html similar to: `<div class='clockwise_current_wait'>10</div>`
-
-**`Clockwise.CurrentLength(hospital_id, format)`**:
-
-Use this method to get the current number of patients in line. `Clockwise.CurrentLength` is a little different in that
-it will not render html (even when the `format` argument is 'html'). Instead it will fetch the current number of
-patients in line and append it to the `Clockwise` object. For example:
-
-```js
-Clockwise.Lengths // returns {}
-Clockwise.CurrentLength(123, 'html') // this updates Clockwise.Lengths attribute
-Clockwise.Lengths // returns {123: '5'} assuming there are 5 patients in line
-// Access the length for clinic 123 via: Clockwise.Lengths[123]
-```
-
-
-### Examples
-This first snippet of code is what gets the wait time from your clinic.  It should go inside the
-`<head>` tag of your web page.  You want to replace __[ID]__ with your hospital's id number
+This first snippet of code is what gets the wait time from your clinic. It should go inside the
+`<head>` tag of your web page. You want to replace __[ID]__ with your hospital's id number
 (exclude the brackets) where noted.
 
 ```javascript
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
 
@@ -70,15 +46,15 @@ This first snippet of code is what gets the wait time from your clinic.  It shou
 <style>
   .clockwise_current_wait{display:inline;}
 </style>
-
 ```
+
 ---
+
 This next snippet of code will render a button on your webpage that a potential patient can click
-to follow to the online appointment creation screen.  This can be placed anywhere within the
+to follow to the online appointment creation screen. This can be placed anywhere within the
 `<body>` tag on your web page.
 
 ```html
-
 <div style="display: inline-block; padding: 12px 20px 20px; margin-bottom: 0;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14px;
     line-height: 20px; color: #ffffff; text-align: center; background-color:#2a7bbb;
@@ -110,10 +86,9 @@ to follow to the online appointment creation screen.  This can be placed anywher
     -webkit-border-radius: 10px; -moz-border-radius: 10px;
     border-radius: 10px;">Reserve my spot</a>
   </div>
-
 ```
 
-The above snippet is pre-styled.  It will look as follows:
+The above snippet is pre-styled. It will look as follows:
 
 ![Default Widget](Default_Widget_Style.png)
 
@@ -121,18 +96,16 @@ If you do not want the above styling, the minimum `HTML` code needed to display 
 is the following.
 
 ```html
-
 <!-- TODO replace [ID] with your Hospital's id (exclude the brackets) -->
 <h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>
-
 ```
 
 ### Display a Range
+
 If you'd like to display a time range instead of just a number, it's fairly easy to extend
-our API to do this.  We'll be editing the Javascript used in the `<head>` tag as follows:
+our API to do this. We'll be editing the Javascript used in the `<head>` tag as follows:
 
 ```javascript
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
 
@@ -146,8 +119,8 @@ our API to do this.  We'll be editing the Javascript used in the `<head>` tag as
       // TODO change this to equal your desired wait time (in minutes)
       var predicted_wait_range = 15;
 
-      // This creates our new container to insert into the page.  You can edit this to look however
-      // you want.  This example is the one displayed in the demonstration page linked above
+      // This creates our new container to insert into the page. You can edit this to look however
+      // you want. This example is the one displayed in the demonstration page linked above
       var waits_div = "<div class='clockwise_current_wait'>" + current_wait +
         " - " + (current_wait + predicted_wait_range) + "</div>";
 
@@ -171,33 +144,60 @@ our API to do this.  We'll be editing the Javascript used in the `<head>` tag as
 <style>
   .clockwise_current_wait{display:inline;}
 </style>
-
 ```
 
 With this in place, we won't need to alter anything in our `<body>` tag of the web page.
 
-### Advanced Topics
-For systems with multiple clinics, the Clockwise widget can easily scale to allow for retrieval
-of all your wait times.  Understanding how the code functions can be helpful to properly setting
-up your web page.
+---
 
-First, we'll analyze the javascript.  The following two lines import jQuery, a popular javascript
-library, and the Clockwise API, respectively.  
+### Javascript walkthrough
 
-```javascript
+Our Javascript API module can be found [here](https://www.clockwisemd.com/hospitals/clockwise_api.js). The following
+shows some of the methods available on the `window.Clockwise` object and how to use them.
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
+**`Clockwise.AvailableTimes(hospital_id, days_from_today, format, is_15_min)`**:
 
+Use this method to get a list of available times for your clinic. When `format` argument is 'html' it will render
+html similar to: `<div class='clockwise_time clockwise_available_time'><a href='http://clockwisemd.com/hospitals/[ID]/appointments/new?appointment[days_from_today]=0&appointment[time]= 8:45 AM'> 8:45 AM</a></div>`.
+
+**`Clockwise.CurrentWait(hospital_id, format)`**:
+
+Use this method to get the current estimated wait time. When `format`
+argument is 'html' it will render html similar to: `<div class='clockwise_current_wait'>10</div>`
+
+**`Clockwise.CurrentLength(hospital_id, format)`**:
+
+Use this method to get the current number of patients in line. `Clockwise.CurrentLength` is a little different in that
+it will not render html (even when the `format` argument is 'html'). Instead it will fetch the current number of
+patients in line and append it to the `Clockwise` object. For example:
+
+```js
+Clockwise.Lengths // returns {}
+Clockwise.CurrentLength(123, 'html') // this updates Clockwise.Lengths attribute
+Clockwise.Lengths // returns {123: '5'} assuming there are 5 patients in line
+// Access the length for clinic 123 via: Clockwise.Lengths[123]
 ```
 
-Your website should only import jQuery once, so if it already
-exists somewhere, don't add it again (but make sure that the version is 1.10.2 or greater).  
-The Clockwise API provides the functions to query your clinic. Below is the next part of the
-javascript that sets up the call.  It must come __AFTER__ you've called the above scripts.
+### Advanced Topics
+
+For systems with multiple clinics, the Clockwise widget can easily scale to allow for retrieval
+of all your wait times. Understanding how the code functions can be helpful to properly setting
+up your web page.
+
+First, we'll analyze the javascript. The following two lines import jQuery, a popular javascript
+library, and the Clockwise API, respectively.
 
 ```javascript
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
+```
 
+Your website should only import jQuery once, so if it already exists somewhere, don't add it again 
+(but make sure that the version is 1.10.2 or greater). The Clockwise API provides the functions to 
+query your clinic. Below is the next part of the javascript that sets up the call. It must come 
+__AFTER__ you've called the above scripts.
+
+```javascript
 jQuery(document).ready( function() {
   jQuery('body').on('clockwise_waits_loaded', function (e, id) {
     jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);
@@ -208,22 +208,23 @@ jQuery(document).ready( function() {
 ```
 
 The outer function, `jQuery(document).ready( function() { ... } )`, tells jQuery to run the
-function within it once the page has loaded.  
-The next part, called inside of the `ready` function, is
-`jQuery('body').on('clockwise_waits_loaded', ... )`, which tells the page to listen for the
-`clockwise_waits_loaded` signal that the Clockwise API sends when it has loaded the waits and once
-it receives that signal, to run a different function.  Next, `function(e, id) { ... }` is the
-function called when the signal is received.  Notice the inputs `e` and `id`.  The `e` is short
-for `event`, which can safely be ignored, but must still be included.  The second input, `id`, is
-the variable that will hold your hospital's id.  Finally, the piece that assigns the wait to
-the corresponding __HTML__ tag is `jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);`, which
-accomplishes a couple things.  1) It creates a unique identifier for the current wait, as can
-be seen by `'#current_wait_'+id` (so if you have a hospital with id 293, it will easily be
-identifiable).  2) It assigns the value of the current wait for the retrieved id.  The last
-thing called within the `ready` function is `loadAllWaits()`, which will be described below.
+function within it once the page has loaded. The next part, called inside of the `ready` function, 
+is `jQuery('body').on('clockwise_waits_loaded', ... )`, which tells the page to listen for 
+the `clockwise_waits_loaded` signal that the Clockwise API sends when it has loaded the waits 
+and once it receives that signal, to run a different function.
+
+Next, `function(e, id) { ... }` is the function called when the signal is received. Notice the 
+inputs `e` and `id`. The `e` is short for `event`, which can safely be ignored, but must still 
+be included. The second input, `id`, is the variable that will hold your hospital's id.
+
+Finally, the piece that assigns the wait to the corresponding __HTML__ tag is `jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);`, which accomplishes a couple things.
+
+1. It creates a unique identifier for the current wait, as can be seen by `'#current_wait_'+id` 
+(so if you have a hospital with id 293, it will easily be identifiable).
+2. It assigns the value of the current wait for the retrieved id. The last thing called within 
+the `ready` function is `loadAllWaits()`, which will be described below.
 
 ```javascript
-
 function loadAllWaits() {
   /*
    * TODO change [ID] to your hospital's id
@@ -233,17 +234,15 @@ function loadAllWaits() {
   // To Add additional wait times for other clinics, copy line above with different ID.
   setTimeout(function(){loadAllWaits()},60000);
 }
-
 ```
 
-The `loadAllWaits()` function does two important things.  First, it calls
+The `loadAllWaits()` function does two important things. First, it calls
 `Clockwise.CurrentWait( ... )` on the supplied hospital id, and then it sets up the function to
-be called again in 1 minute.  This allows your web page to stay live in its updates without
-having to refresh the page.  If you wanted to call for multiple hospital ids, your `loadAllWaits()`
+be called again in 1 minute. This allows your web page to stay live in its updates without
+having to refresh the page. If you wanted to call for multiple hospital ids, your `loadAllWaits()`
 function might look like this:
 
 ```javascript
-
 function loadAllWaits() {
   Clockwise.CurrentWait(1, 'html');
   Clockwise.CurrentWait(8, 'html');
@@ -252,29 +251,24 @@ function loadAllWaits() {
   // To Add additional wait times for other clinics, copy line above with different ID.
   setTimeout(function(){loadAllWaits()},60000);
 }
-
 ```
+
 Make sure the hospital ids you include correspond to the hospitals in your network, otherwise
 you'll be getting wait times from different clinics!
 
-
 The last important piece to discuss is the __HTML__ you'll include in the `<body>` tag of your
-page.  The much longer one is our pre-styled widget, but most of the styling is non-essential, so
+page. The much longer one is our pre-styled widget, but most of the styling is non-essential, so
 I will instead just strip out the important part.
 
 ```html
-
 <h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>
-
 ```
 
 The important part is
 `<h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>` because
-that is where the wait time will go.  Again, this is one of the places where you need  to input
+that is where the wait time will go. Again, this is one of the places where you need to input
 your id number, so a complete example is as follows:
 
 ```html
-
 <h4>Current wait time:<div id="current_wait_293" style="display:inline;"></div></h4>
-
 ```
