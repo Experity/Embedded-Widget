@@ -16,8 +16,8 @@ facing website. It does not in any way affect functionality of the application.
 ### Basic Usage
 
 This first snippet of code is what gets the wait time from your clinic. It should go inside the
-`<head>` tag of your web page. You want to replace __[ID]__ with your hospital's id number
-(exclude the brackets) where noted.
+`<head>` tag of your web page. You want to change __REPLACEME__ with your hospital's id number
+where noted.
 
 ```javascript
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -34,9 +34,9 @@ This first snippet of code is what gets the wait time from your clinic. It shoul
 
   function loadAllWaits() {
     /*
-     * TODO change [ID] to your hospital's id
+     * TODO change REPLACEME to your hospital's id, e.g. Clockwise.CurrentWait(123, 'html');
      */
-    Clockwise.CurrentWait([ID], 'html');  
+    Clockwise.CurrentWait(REPLACEME, 'html');
 
     // To Add additional wait times for other clinics, copy line above with different ID.
     setTimeout(function(){loadAllWaits()},60000);
@@ -69,11 +69,11 @@ to follow to the online appointment creation screen. This can be placed anywhere
     <h3 style="font-size:18px; line-height:20px; font-weight:300; margin-top:0px;
     margin-bottom:10px; display: block;">Current Wait is:
 
-      <!-- TODO replace [ID] with your hospital's id (exlude the brackets) -->
-      <div id="current_wait_[ID]" style="display:inline;"></div> Minutes</h3>
+      <!-- TODO change REPLACEME with your hospital's id, e.g. id="current_wait_123" -->
+      <div id="current_wait_REPLACEME" style="display:inline;"></div> Minutes</h3>
 
-    <!-- TODO replace [ID] with your hospital's id (exclude the brackets) -->
-    <a href="https://www.clockwisemd.com/hospitals/[ID]/appointments/new" style="color:white;
+    <!-- TODO change REPLACEME with your hospital's id, e.g. /hospitals/123/appointments/new -->
+    <a href="https://www.clockwisemd.com/hospitals/REPLACEME/appointments/new" style="color:white;
     text-decoration: none; font-size: 26px; line-height:30px; font-weight:bold;
     letter-spacing:2px; margin-top:15px; padding: 5px 10px; margin-bottom: 0;
     text-align: center; cursor: pointer;
@@ -96,8 +96,8 @@ If you do not want the above styling, the minimum `HTML` code needed to display 
 is the following.
 
 ```html
-<!-- TODO replace [ID] with your Hospital's id (exclude the brackets) -->
-<h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>
+<!-- TODO change REPLACEME with your Hospital's id, e.g. id="current_wait_123" -->
+<h4>Current wait time:<div id="current_wait_REPLACEME" style="display:inline;"></div></h4>
 ```
 
 ### Display a Range
@@ -132,9 +132,9 @@ our API to do this. We'll be editing the Javascript used in the `<head>` tag as 
 
   function loadAllWaits() {
     /*
-     * TODO change [ID] to your hospital's id
+     * TODO change REPLACEME to your hospital's id, e.g. Clockwise.CurrentWait(123, 'html');
      */
-    Clockwise.CurrentWait([ID], 'html');  
+    Clockwise.CurrentWait(REPLACEME, 'html');
 
     // To Add additional wait times for other clinics, copy line above with different ID.
     setTimeout(function(){loadAllWaits()},60000);
@@ -158,7 +158,7 @@ shows some of the methods available on the `window.Clockwise` object and how to 
 **`Clockwise.AvailableTimes(hospital_id, days_from_today, format, is_15_min)`**:
 
 Use this method to get a list of available times for your clinic. When `format` argument is 'html' it will render
-html similar to: `<div class='clockwise_time clockwise_available_time'><a href='http://clockwisemd.com/hospitals/[ID]/appointments/new?appointment[days_from_today]=0&appointment[time]= 8:45 AM'> 8:45 AM</a></div>`.
+html similar to: `<div class='clockwise_time clockwise_available_time'><a href='http://clockwisemd.com/hospitals/REPLACEME/appointments/new?appointment[days_from_today]=0&appointment[time]= 8:45 AM'> 8:45 AM</a></div>`.
 
 **`Clockwise.CurrentWait(hospital_id, format)`**:
 
@@ -227,9 +227,9 @@ the `ready` function is `loadAllWaits()`, which will be described below.
 ```javascript
 function loadAllWaits() {
   /*
-   * TODO change [ID] to your hospital's id
+   * TODO change REPLACEME to your hospital's id, e.g. Clockwise.CurrentWait(123, 'html');
    */
-  Clockwise.CurrentWait([ID], 'html');  
+  Clockwise.CurrentWait(REPLACEME, 'html');
 
   // To Add additional wait times for other clinics, copy line above with different ID.
   setTimeout(function(){loadAllWaits()},60000);
@@ -261,11 +261,11 @@ page. The much longer one is our pre-styled widget, but most of the styling is n
 I will instead just strip out the important part.
 
 ```html
-<h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>
+<h4>Current wait time:<div id="current_wait_REPLACEME" style="display:inline;"></div></h4>
 ```
 
 The important part is
-`<h4>Current wait time:<div id="current_wait_[ID]" style="display:inline;"></div></h4>` because
+`<h4>Current wait time:<div id="current_wait_REPLACEME" style="display:inline;"></div></h4>` because
 that is where the wait time will go. Again, this is one of the places where you need to input
 your id number, so a complete example is as follows:
 
