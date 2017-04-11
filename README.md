@@ -1,4 +1,4 @@
-# Clockwise.MD Website Widget
+# Clockwise.MD Embedded Widget
 
 ### A Quick Note
 
@@ -9,7 +9,7 @@ facing website. It does not in any way affect functionality of the application.
 
 ### Demonstration
 
-[Click here to see the widget in action](http://lightshedhealth.github.io/Website-Widget-API/)
+[Click here to see the widget in action](http://lightshedhealth.github.io/Embedded-Widget-API/)
 
 ---
 
