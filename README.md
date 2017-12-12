@@ -160,5 +160,5 @@ There are a total of six possible `timeTypes` to choose from.
 This widget acts as a WYSIWYG drop in for immediately showing wait times.  For a deeper
 understanding of how we pull wait times out, read through the comments in
 `clockwiseWaitTime.js`.  If you find that what you need is not covered within
-the wait API, check out our [documentation page](www.clockwisemd.com/docs).
+the wait API, check out our [documentation page](https://www.clockwisemd.com/docs).
 You will need to be an authenticated user to view this page.
