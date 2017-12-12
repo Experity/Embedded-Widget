@@ -162,3 +162,7 @@ understanding of how we pull wait times out, read through the comments in
 `clockwiseWaitTime.js`.  If you find that what you need is not covered within
 the wait API, check out our [documentation page](https://www.clockwisemd.com/docs).
 You will need to be an authenticated user to view this page.
+
+### Old documentation
+
+Looking for our old documentation?  [Follow this link!](https://github.com/LightshedHealth/Embedded-Widget/tree/e3b91834b2fa1bd56b68704462ca3fde616b78c1)
