@@ -1,49 +1,15 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <!-- This is the code for getting the wait time information-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://www.clockwisemd.com/hospitals/clockwise_api.js"></script>
-
-    <script>
-      jQuery(document).ready( function() {
-        jQuery('body').on('clockwise_waits_loaded', function (e, id) {
-          // This one populates the stylized wait display
-          jQuery('#current_wait_'+id).html(Clockwise.Waits[id]);
-
-          // This one populates the basic wait display
-          jQuery('#current_wait_simple_'+id).html(Clockwise.Waits[id]);
-
-          // This is the example of using a wait range
-          var current_wait = parseInt(jQuery(Clockwise.Waits[id]).html());
-          var predicted_wait_range = 15;
-
-          var waits_div = "<div class='clockwise_current_wait'>" + current_wait +
-            " - " + (current_wait + predicted_wait_range) + "</div>";
-
-          // MAKE SURE NOT TO CHANGE THE ID HERE
-          jQuery('#current_wait_range_'+id).html(waits_div);
-        });
-        loadAllWaits();
-      });
-
-      function loadAllWaits() {
-        Clockwise.CurrentWait(293, 'html');
-
-        // To Add additional wait times for other clinics, copy line above with different ID.
-        setTimeout(function(){loadAllWaits()},60000);
-      }
-    </script>
-
-    <style>
-      .clockwise_current_wait{display:inline;}
-    </style>
-    <!-- This is the end of the head code -->
+    <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+    <script src="https://s3-us-west-1.amazonaws.com/clockwisepublic/clockwiseWaitTimes.js"></script>
   </head>
   <body>
-    <div align="center">
-      <h2>This is how the wait time widget can appear on your website if you use our supplied style</h2>
-
-      <!-- This is the code for the button on the web page -->
+    <div align='center'>
+      <h2>Below are the wait time widgets in action.  View the source to see how this information is populated.</h2>
       <div style="display: inline-block; padding: 12px 20px 20px; margin-bottom: 0;
         font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14px;
         line-height: 20px; color: #ffffff; text-align: center; background-color:#2a7bbb;
@@ -57,7 +23,7 @@
         letter-spacing:2px;">Wait</div>
         <h3 style="font-size:18px; line-height:20px; font-weight:300; margin-top:0px;
         margin-bottom:10px; display: block;">Current Wait is:
-          <div id="current_wait_293" style="display:inline;"></div> Minutes</h3>
+          <div id="current-wait-4" style="display:inline;"></div> Minutes</h3>
         <a href="https://www.clockwisemd.com/hospitals/293/appointments/new" style="color:white;
         text-decoration: none; font-size: 26px; line-height:30px; font-weight:bold;
         letter-spacing:2px; margin-top:15px; padding: 5px 10px; margin-bottom: 0;
@@ -71,13 +37,34 @@
         -webkit-border-radius: 10px; -moz-border-radius: 10px;
         border-radius: 10px;">Reserve my spot</a>
       </div>
-      <!-- This is the end of the web page code -->
 
-      <h2>Below is an example of just the basic wait time display</h2>
-      <h4>Current wait time: <span id="current_wait_simple_293"></span> minutes</h4>
-      <h2>This example shows what a basic wait range can look like</h2>
-      <h4>Current wait: <span id="current_wait_range_293"></span> minutes</h4>
+      <h3><div id="patients-in-line-4" style="display:inline;"></div> Patients in Line</h3>
+
+      <h3>Wait in Provider Queue is <div id="current-queue-wait-6" style="display:inline;"></div> Minutes</h3>
+
+      <h3>Provider Queue has <div id="patients-in-line-queue-6" style="display:inline;"></div> Patients in Line</h3>
+
+      <h2>You can also watch in real time as the wait times are queried.  Open the inspector and click the "Network" tab.</h2>
     </div>
-  </body>
 
+    <script type='application/javascript'>
+      var WAIT_FETCH_OBJECTS = [
+          { hospitalId: 293,
+            timeType:   'hospitalWait',
+            selector:   '#current-wait-4' },
+          { hospitalId: 293,
+            timeType:   'hospitalPatientsInLine',
+            selector:   '#patients-in-line-4' },
+          { hospitalId: 293,
+            queueId:    458,
+            timeType:   'queuePatientsInLine',
+            selector:   '#patients-in-line-queue-6' },
+          { hospitalId: 293,
+            queueId:    458,
+            timeType:   'queueWait',
+            selector:   '#current-queue-wait-6' }
+      ];
+      beginWaitTimeQuerying(WAIT_FETCH_OBJECTS);
+    </script>
+  </body>
 </html>
