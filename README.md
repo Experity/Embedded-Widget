@@ -152,7 +152,7 @@ There are a total of six possible `timeTypes` to choose from.
 'hospitalTotalPatients'  // Returns the total number of patients at the hospital (includes appointments later in the day)
 'queueWait'              // Returns a Queue's current wait in minutes (this requires the the queueId to be passed)
 'queuePatientsInLine'    // Returns a Queue's current patients in line (this requires the the queueId to be passed)
-'queueWaitRange'         // Returns a Queue's current waitn in minutes in the form of a range (this requires the the queueId to be passed)
+'queueWaitRange'         // Returns a Queue's current wait in minutes in the form of a range (this requires the the queueId to be passed)
 ```
 
 ### Advanced
