@@ -166,3 +166,7 @@ You will need to be an authenticated user to view this page.
 ### Old documentation
 
 Looking for our old documentation?  [Follow this link!](https://github.com/LightshedHealth/Embedded-Widget/tree/e3b91834b2fa1bd56b68704462ca3fde616b78c1)
+
+### Show information for a lot of clinics
+
+If you need something that is more tuned toward showing wait times at many facilities, [follow this link to look into our groups widget!](https://github.com/LightshedHealth/Embedded-Map)
