@@ -1,11 +1,10 @@
 function beginWaitTimeQuerying(waitFetchObjects, timeBetweenUpdates) {
   var TIME_BETWEEN_UPDATES = timeBetweenUpdates || 60000; // One minute in milliseconds
 
-  // This is a helper function that looks at the returned JSON from our
-  // API call and returns the desired value based on which timeType
-  // was passed
-  function determineTimeToAdd(waitFetchObject, data) {
-    var timeType = waitFetchObject.timeType;
+  //
+  //
+  //
+  function rawWaitValue(timeType, data) {
     if(timeType === 'hospitalWait') return data.hospital_waits.current_wait;
     if(timeType === 'hospitalPatientsInLine') return data.hospital_waits.queue_length;
     if(timeType === 'hospitalTotalPatients') return data.hospital_waits.queue_total;
@@ -13,6 +12,16 @@ function beginWaitTimeQuerying(waitFetchObjects, timeBetweenUpdates) {
     if(timeType === 'queuePatientsInLine') return determineQueueTimeToAdd(waitFetchObject, data).current_patients_in_line;
     if(timeType === 'queueWaitRange') return determineQueueTimeToAdd(waitFetchObject, data).current_wait_range;
     return 'Invalid timeType';
+  }
+
+  // This is a helper function that looks at the returned JSON from our
+  // API call and returns the desired value based on which timeType
+  // was passed
+  function determineTimeToAdd(waitFetchObject, data) {
+    var callbackFn = waitFetchObject.formatFunction;
+    var rawValue = rawWaitValue(waitFetchObject.timeType, data)
+    if (typeof callbackFn !== 'function') { return rawValue }
+    return callbackFn(rawValue)
   }
 
   // This is a helper function that finds the desired queue to grab wait

@@ -155,6 +155,65 @@ There are a total of six possible `timeTypes` to choose from.
 'queueWaitRange'         // Returns a Queue's current wait in minutes in the form of a range (this requires the the queueId to be passed)
 ```
 
+### Formatting and Custom Response Handling
+
+In some cases, you may wish to apply additional logic to a value, for example
+to display a custom message when the clinic is closed or to express the wait
+time as a range different from how you would show it on a Clockwise page.  In
+order to accomplish this, you can define a custom callback function, which will
+receive the value exactly as it is returned from the Clockwise API and should
+return the content that you wish to inject into the specified element on the
+page.
+
+Below is an example that displays a custom message any time the Clockwise API
+returns `"Closed"`. Otherwise, it displays the current wait as a 10-minute
+range.
+
+```
+<html>
+  <head>
+    <!-- Content in your head -->
+    <!-- ... -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://s3-us-west-1.amazonaws.com/clockwisepublic/clockwiseWaitTimes.min.js"></script>
+  </head>
+  <body>
+    <!-- Content in your body -->
+
+    <!-- ... -->
+
+    <h3><div id='current-wait-293'></div></h3>
+
+    <!-- ... -->
+
+    <script type='application/javascript'>
+      function waitTimeMessage(rawWait){
+        if (rawWait === 'Closed') { return 'The clinic is currently closed.  You can still reserve a time for tomorrow' };
+        var numericWait = parseInt(rawWait);
+        var waitRangeEnd = numericWait + 10;
+        return 'Next available visit is in ' + numericWait + ' - ' + waitRangeEnd + ' minutes';
+      };
+
+      var WAIT_FETCH_OBJECTS = [
+          { hospitalId:     293,
+            timeType:       'hospitalWait',
+            selector:       '#current-wait-293',
+            formatFunction: waitTimeMessage }
+      ];
+      beginWaitTimeQuerying(WAIT_FETCH_OBJECTS);
+    </script>
+  </body>
+</html>
+```
+
+Note that the full output of the formatting message will replace the full
+content of the associated page element, so use cases involving a callback
+function will generally require that the associated selector covers a wider
+scope than those where the returned number or range is injected directly.
+
 ### Advanced
 
 This widget acts as a WYSIWYG drop in for immediately showing wait times.  For a deeper
