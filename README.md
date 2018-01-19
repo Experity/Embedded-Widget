@@ -166,8 +166,8 @@ return the content that you wish to inject into the specified element on the
 page.
 
 Below is an example that displays a custom message any time the Clockwise API
-returns `"Closed"` and displays a message including a 10-minute range
-otherwise.
+returns `"Closed"`. Otherwise, it displays the current wait as a 10-minute
+range.
 
 ```
 <html>
