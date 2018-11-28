@@ -1,5 +1,9 @@
 # Clockwise.MD Embedded Widget
 
+## What you see is what you get
+
+We provide the following as a convenience to web designers to get started, but we in no way promise that it will work out of the box with different frameworks, stylesheets, etc.  We cannot provide design and setup support for issues encountered during the development process.
+
 ### Usage Note
 
 This is a patient facing widget that is meant to be added to your clinic or hospital's public
