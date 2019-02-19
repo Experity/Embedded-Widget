@@ -24,7 +24,7 @@ jobs:
 
       - run:
           name: "Minify Wait Time JS"
-          command: npx uglify-js --verbose --warn --output output.min.js -- clockwiseWaitTimes.js
+          command: npx uglify-js --mangle --verbose --warn --output output.min.js -- clockwiseWaitTimes.js
 
       - persist_to_workspace:
           root: .
