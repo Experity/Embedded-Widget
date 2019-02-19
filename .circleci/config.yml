@@ -1,0 +1,56 @@
+version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@1.0.3
+jobs:
+  compile_library:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:8.9.1
+    steps:
+      - checkout
+
+      - restore_cache:
+        keys:
+          - js-dependencies-v1
+
+      - run:
+        name: Install UglifyJS
+        command: npm install -g uglify-js
+
+      - save_cache:
+        paths:
+          - ./node_modules
+        keys:
+          - js-dependencies-v1
+
+      - run:
+        name: Minify Wait Time JS
+        run: uglifyjs --verbose --warn --output output.min.js -- clockwiseWaitTimes.js
+
+      - persist_to_workspace:
+        root: .
+        paths:
+          - output.min.js
+
+  upload_to_s3:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/python:3.5
+      - attach_workspace:
+          at: .
+      - aws-s3/copy:
+          from: output.min.js
+          to: 's3://clockwisepublic/clockwiseWaitTimes.min.js'
+
+workflows:
+  version: 2.1
+  deploy:
+    jobs:
+      - compile_library
+      - upload_to_s3:
+          requires:
+            - compile_library
+          filters:
+            branches:
+              only:
+                - master
