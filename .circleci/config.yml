@@ -36,6 +36,7 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/python:3.5
+    steps:
       - attach_workspace:
           at: .
       - aws-s3/copy:
