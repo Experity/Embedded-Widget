@@ -72,8 +72,10 @@ function beginWaitTimeQuerying(waitFetchObjects, timeBetweenUpdates) {
     var waitKeys = Object.keys(clusteredWaits),
         currentCluster, queryUrl;
     for(var i = 0; i < waitKeys.length; i++) {
-      currentCluster = clusteredWaits[waitKeys[i]];
-      queryUrl = 'https://api.clockwisemd.com/v1/hospitals/' + waitKeys[i] + '/waits';
+      var hospitalId = waitKeys[i];
+      if (!hospitalId) return;
+      currentCluster = clusteredWaits[hospitalId];
+      queryUrl = 'https://api.clockwisemd.com/v1/hospitals/' + hospitalId + '/waits';
       $.ajax({
         url:    queryUrl,
         method: 'GET',
