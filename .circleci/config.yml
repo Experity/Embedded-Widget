@@ -36,12 +36,18 @@ jobs:
     docker:
       - image: circleci/python:3.5
     steps:
+      - checkout
+
       - attach_workspace:
           at: .
 
       - aws-s3/copy:
           from: output.min.js
           to: 's3://clockwisepublic/clockwiseWaitTimes.min.js'
+
+      - aws-s3/copy:
+          from: clockwiseWaitTimes.js
+          to: 's3://clockwisepublic/clockwiseWaitTimes.js'
 
 workflows:
   version: 2.1
