@@ -18,14 +18,13 @@ jobs:
           command: npm install -g uglify-js
 
       - save_cache:
+          key: js-dependencies-v1
           paths:
             - ./node_modules
-          key:
-            - js-dependencies-v1
 
       - run:
           name: "Minify Wait Time JS"
-          run: uglifyjs --verbose --warn --output output.min.js -- clockwiseWaitTimes.js
+          command: uglifyjs --verbose --warn --output output.min.js -- clockwiseWaitTimes.js
 
       - persist_to_workspace:
           root: .
