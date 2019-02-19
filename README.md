@@ -218,6 +218,16 @@ content of the associated page element, so use cases involving a callback
 function will generally require that the associated selector covers a wider
 scope than those where the returned number or range is injected directly.
 
+### Library distribution
+
+You can find a minified version of the wait time library at the following link:
+https://s3-us-west-1.amazonaws.com/clockwisepublic/clockwiseWaitTimes.min.js
+
+This version is recommended for production use and will always match the unminified
+version found in this repository.  If you wish to have a static reference
+to the library, feel free to download it from there and include it in your website. We will
+not provide instructions on how to do this.
+
 ### Advanced
 
 This widget acts as a WYSIWYG drop in for immediately showing wait times.  For a deeper
