@@ -10,27 +10,27 @@ jobs:
       - checkout
 
       - restore_cache:
-        keys:
-          - js-dependencies-v1
+          keys:
+            - js-dependencies-v1
 
       - run:
-        name: Install UglifyJS
-        command: npm install -g uglify-js
+          name: Install UglifyJS
+          command: npm install -g uglify-js
 
       - save_cache:
-        paths:
-          - ./node_modules
-        keys:
-          - js-dependencies-v1
+          paths:
+            - ./node_modules
+          keys:
+            - js-dependencies-v1
 
       - run:
-        name: Minify Wait Time JS
-        run: uglifyjs --verbose --warn --output output.min.js -- clockwiseWaitTimes.js
+          name: Minify Wait Time JS
+          run: uglifyjs --verbose --warn --output output.min.js -- clockwiseWaitTimes.js
 
       - persist_to_workspace:
-        root: .
-        paths:
-          - output.min.js
+          root: .
+          paths:
+            - output.min.js
 
   upload_to_s3:
     working_directory: ~/repo
