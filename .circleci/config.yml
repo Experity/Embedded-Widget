@@ -39,11 +39,9 @@ jobs:
       - attach_workspace:
           at: .
 
-      - run: cat output.min.js
-      - run: ls -la
-          # - aws-s3/copy:
-          # from: output.min.js
-          # to: 's3://clockwisepublic/clockwiseWaitTimes.min.js'
+      - aws-s3/copy:
+          from: output.min.js
+          to: 's3://clockwisepublic/clockwiseWaitTimes.min.js'
 
 workflows:
   version: 2.1
