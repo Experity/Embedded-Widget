@@ -38,18 +38,22 @@ jobs:
     steps:
       - checkout
 
-      - attach_workspace:
-          at: .
+      - run:
+          name: Locate site Packages
+          command: python -c "import site; print(site.getsitepackages())"
 
-      - aws-s3/copy:
-          from: output.min.js
-          to: 's3://clockwisepublic/clockwiseWaitTimes.min.js'
-          arguments: '--grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
-
-      - aws-s3/copy:
-          from: clockwiseWaitTimes.js
-          to: 's3://clockwisepublic/clockwiseWaitTimes.js'
-          arguments: '--grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
+        #     - attach_workspace:
+        #         at: .
+        #
+        #     - aws-s3/copy:
+        #         from: output.min.js
+        #         to: 's3://clockwisepublic/clockwiseWaitTimes.min.js'
+        #         arguments: '--grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
+        #
+        #     - aws-s3/copy:
+        #         from: clockwiseWaitTimes.js
+        #         to: 's3://clockwisepublic/clockwiseWaitTimes.js'
+        #         arguments: '--grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
 
 workflows:
   version: 2.1
