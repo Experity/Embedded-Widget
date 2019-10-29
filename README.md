@@ -72,7 +72,7 @@ with
   <h3 style="font-size:18px; line-height:20px; font-weight:300; margin-top:0px;
   margin-bottom:10px; display: block;">Current Wait is:
     <div id="current-wait-293" style="display:inline;"></div> Minutes</h3>
-  <a href="https://www.clockwisemd.com/hospitals/293/appointments/new" style="color:white;
+  <a href="https://www.clockwisemd.com/hospitals/293/visits/new" style="color:white;
   text-decoration: none; font-size: 26px; line-height:30px; font-weight:bold;
   letter-spacing:2px; margin-top:15px; padding: 5px 10px; margin-bottom: 0;
   text-align: center; cursor: pointer;
