@@ -22,11 +22,10 @@ clinic with ID 293.
 <html>
   <head>
     <!-- Content in your head -->
-    <!-- ... -->
     <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script><!-- ... -->
     <script src="https://s3-us-west-1.amazonaws.com/clockwisepublic/clockwiseWaitTimes.min.js"></script>
   </head>
   <body>
@@ -112,9 +111,9 @@ hospital.
     <!-- Content in your head -->
     <!-- ... -->
     <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script><!-- ... -->
     <script src="https://s3-us-west-1.amazonaws.com/clockwisepublic/clockwiseWaitTimes.min.js"></script>
   </head>
   <body>
@@ -179,9 +178,9 @@ range.
     <!-- Content in your head -->
     <!-- ... -->
     <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script><!-- ... -->
     <script src="https://s3-us-west-1.amazonaws.com/clockwisepublic/clockwiseWaitTimes.min.js"></script>
   </head>
   <body>
