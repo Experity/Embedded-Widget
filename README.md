@@ -168,9 +168,8 @@ receive the value exactly as it is returned from the Clockwise API and should
 return the content that you wish to inject into the specified element on the
 page.
 
-Below is an example that displays a custom message any time the Clockwise API
-returns `"Closed"`. Otherwise, it displays the current wait as a 10-minute
-range.
+Below is an example that displays a custom message any time the clinic is closed.
+Otherwise, it displays the current wait as a 10-minute range.
 
 ```
 <html>
@@ -194,7 +193,9 @@ range.
 
     <script type='application/javascript'>
       function waitTimeMessage(rawWait){
-        if (rawWait === 'Closed') { return 'The clinic is currently closed.  You can still reserve a time for tomorrow' };
+        if (rawWait === 'Closed' || rawWait === 'N/A') {
+          return 'The clinic is currently closed.  You can still reserve a time for tomorrow'
+        };
         var numericWait = parseInt(rawWait);
         var waitRangeEnd = numericWait + 10;
         return 'Next available visit is in ' + numericWait + ' - ' + waitRangeEnd + ' minutes';
